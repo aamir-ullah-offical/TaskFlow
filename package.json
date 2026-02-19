@@ -1,18 +1,13 @@
 {
-  "name": "task-flow",
+  "name": "todo-saas",
   "version": "1.0.0",
-  "description": "Production-grade MERN Task Flow Platform",
+  "description": "Production-grade MERN Todo SaaS Platform",
   "private": true,
   "scripts": {
-    "start": "cd server && node server.js",
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
     "install:all": "cd server && npm install && cd ../client && npm install",
-    "start:server": "cd server && npm start",
-    "heroku-postbuild": "cd client && npm install && npm run build"
-  },
-  "engines": {
-    "node": "20.x"
+    "start:server": "cd server && npm start"
   },
   "keywords": [],
   "author": "",

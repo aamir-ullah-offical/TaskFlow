@@ -310,7 +310,7 @@ const DeveloperPage = () => {
                         >
                             <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#10b98115', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10b981', fontWeight: 800, fontSize: 20 }}>C</div>
                             <div>
-                                <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 2 }}>Cloud Computing</div>
+                                <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 2 }}>Cloud Computing & Networking</div>
                                 <div style={{ fontSize: 13, color: 'var(--text-secondary)' }}>Corvit Peshawar</div>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 {
-  "name": "todo-saas-server",
+  "name": "task-flow-server",
   "version": "1.0.0",
-  "description": "Production-grade MERN Todo SaaS - Backend API",
+  "description": "Production-grade MERN Task Flow - Backend API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

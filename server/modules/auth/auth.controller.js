@@ -29,12 +29,11 @@ const register = async (req, res, next) => {
 
     const user = await User.create({ name, email, password, avatar });
 
-    const token = generateToken(user._id);
-
+    // NOTE: Registration does NOT return a token.
+    // The user must explicitly login to receive a JWT.
     res.status(201).json({
       success: true,
-      message: 'Registration successful.',
-      token,
+      message: 'Registration successful. Please log in to continue.',
       user: {
         _id: user._id,
         name: user.name,

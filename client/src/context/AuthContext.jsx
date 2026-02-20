@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import api from '../api/axios';
+import { authRef } from '../api/authRef';
 import toast from 'react-hot-toast';
 
 const AuthContext = createContext(null);
@@ -13,7 +14,14 @@ export const AuthProvider = ({ children }) => {
   });
   const [loading, setLoading] = useState(true);
 
-  // Verify token on mount
+  // Register setUser into the shared ref so the axios 401 interceptor
+  // can clear React auth state without a circular import.
+  useEffect(() => {
+    authRef.setUser = setUser;
+    return () => { authRef.setUser = null; };
+  }, []);
+
+  // Verify token on mount — if token is gone or invalid, clear state.
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) { setLoading(false); return; }
@@ -39,13 +47,12 @@ export const AuthProvider = ({ children }) => {
     return data;
   }, []);
 
+  // register() only creates the account — it does NOT store a token
+  // or set auth state. The user must explicitly log in after registering.
   const register = useCallback(async (formData) => {
     const { data } = await api.post('/auth/register', formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    setUser(data.user);
     return data;
   }, []);
 

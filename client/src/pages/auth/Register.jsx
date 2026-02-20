@@ -72,8 +72,8 @@ const Register = () => {
       Object.entries(form).forEach(([k, v]) => { if (k !== 'confirmPassword') formData.append(k, v); });
       if (avatar) formData.append('avatar', avatar);
       await register(formData);
-      toast.success('Account created! Welcome aboard 🎉');
-      navigate('/dashboard');
+      toast.success('Account created! Please sign in to continue 🎉');
+      navigate('/login');
     } catch (err) {
       toast.error(err.response?.data?.message || 'Registration failed.');
     } finally {

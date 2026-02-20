@@ -95,6 +95,12 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// ─── Health Check Endpoint (added for Railway) ──────────────────────────────
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'healthy', uptime: process.uptime() });
+  // Ya simple: res.status(200).send('OK');
+});
+
 // ─── API Routes ──────────────────────────────────────────────────────────────
 app.use('/api/v1', routes);
 
@@ -131,9 +137,11 @@ const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   await connectDB();
-  server.listen(PORT, () => {
+  server.listen(PORT, '0.0.0.0', () => {  // <-- '0.0.0.0' added here
     if (process.env.NODE_ENV === 'development') {
       console.log(`🚀 Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+    } else {
+      console.log(`Server listening on port ${PORT} (bound to 0.0.0.0)`);  // optional log
     }
     startReminderJob();
   });

@@ -1,5 +1,5 @@
 {
-  "name": "todo-saas-server",
+  "name": "task-flow-server",
   "version": "1.0.0",
   "description": "Production-grade MERN - Backend API",
   "main": "server.js",
